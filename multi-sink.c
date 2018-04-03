@@ -67,6 +67,8 @@ static void on_pad_added (GstElement *element, GstPad *pad, gpointer data)
     gst_element_sync_state_with_parent(sink);
 
     gst_element_link_many(element, queue, parser, decoder, sink, NULL);
+    sprintf(ename, "sink%d", d->count);
+    GST_DEBUG_BIN_TO_DOT_FILE(GST_BIN(d->pipeline), GST_DEBUG_GRAPH_SHOW_ALL, ename);
 }
 
 int main (int argc, char *argv[])
